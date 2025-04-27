@@ -63,6 +63,7 @@ def preview_letters():
     if not tpl or not os.path.exists(tpl) or not sel:
         return "Template not found or no firms selected", 400
 
+    # Only preview the first selected firm
     firm = sel[0]
     doc = Document(tpl)
     doc = merge_fields(doc, firm)
@@ -71,17 +72,17 @@ def preview_letters():
     tmp_docx = os.path.join(app.config['UPLOAD_FOLDER'], f"{base}_PREVIEW.docx")
     doc.save(tmp_docx)
 
-    # convert in-place
+    # Explicitly convert to PDF
+    pdf_path = tmp_docx.replace('.docx', '.pdf')
     try:
-        convert(tmp_docx)
+        convert(tmp_docx, pdf_path)
     except Exception as e:
         print(f"Preview conversion error for {tmp_docx}: {e}")
 
-    pdf_name = tmp_docx.replace('.docx', '.pdf')
-    if not os.path.exists(pdf_name):
+    if not os.path.exists(pdf_path):
         return "Preview PDF not generated", 500
 
-    return jsonify({"url": f"/preview_pdf/{os.path.basename(pdf_name)}"})
+    return jsonify({"url": f"/preview_pdf/{os.path.basename(pdf_path)}"})
 
 
 @app.route('/preview_pdf/<filename>')
@@ -102,8 +103,10 @@ def generate_letters():
 
     def city_group(c):
         c = (c or '').lower()
-        if c.startswith('toronto'):   return 'Toronto'
-        if c.startswith('vancouver'): return 'Vancouver'
+        if c.startswith('toronto'):
+            return 'Toronto'
+        if c.startswith('vancouver'):
+            return 'Vancouver'
         return 'Other'
 
     base, ext = os.path.splitext(os.path.basename(tpl))
@@ -111,25 +114,25 @@ def generate_letters():
 
     with zipfile.ZipFile(zip_path, 'w') as zf:
         for firm in sel:
-            # 1) DOCX
+            # 1) Generate DOCX
             doc = Document(tpl)
             doc = merge_fields(doc, firm)
             name_docx = f"{base} ({firm['Short_Name']}){ext}"
             path_docx = os.path.join(app.config['UPLOAD_FOLDER'], name_docx)
             doc.save(path_docx)
 
-            # 2) PDF (in-place)
+            # 2) Explicitly convert to PDF
+            path_pdf = path_docx.replace('.docx', '.pdf')
             try:
-                convert(path_docx)
+                convert(path_docx, path_pdf)
             except Exception as e:
                 print(f"Conversion error for {path_docx}: {e}")
 
-            path_pdf = path_docx.replace('.docx', '.pdf')
-
-            # 3) add to zip under city folder
+            # 3) Add both DOCX & PDF to the ZIP
             folder = city_group(firm.get('City'))
             arc_docx = os.path.join(folder, name_docx)
             zf.write(path_docx, arcname=arc_docx)
+
             if os.path.exists(path_pdf):
                 arc_pdf = os.path.join(folder, os.path.basename(path_pdf))
                 zf.write(path_pdf, arcname=arc_pdf)
