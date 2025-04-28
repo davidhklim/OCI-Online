@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusBar   = document.getElementById('status-bar');
   const statusText  = document.getElementById('status-text');
   const uploadForm  = document.getElementById('upload-form');
-  const previewBtn  = document.getElementById('preview-button');
   const generateBtn = document.getElementById('generate-button');
   const uploadStatus= document.getElementById('upload-status');
   const vanList     = document.getElementById('firm-list-vancouver');
@@ -47,39 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
   uploadForm.addEventListener('submit', async e => {
     e.preventDefault();
     showStatus('Uploading template…');
-    previewBtn.disabled = generateBtn.disabled = true;
     const fd = new FormData();
     fd.append('template', document.getElementById('template').files[0]);
     try {
       const resp = await fetch('/upload-template',{method:'POST',body:fd});
       if(!resp.ok) throw '';
-      tplPath = (await resp.json()).template_path;
-      uploadStatus.textContent='Template uploaded!';
-      previewBtn.disabled = generateBtn.disabled = false;
     } catch {
       uploadStatus.textContent='Upload error';
     } finally { hideStatus(); }
-  });
-
-  previewBtn.addEventListener('click', async () => {
-    if(!tplPath) return alert('Upload first');
-    const checked = Array.from(document.querySelectorAll(
-      '#firm-list-vancouver input:checked, #firm-list-toronto input:checked'
-    ));
-    if(!checked.length) return alert('Select at least one');
-    const sel = checked.map(cb=>firms[+cb.value]);
-
-    showStatus('Generating preview…');
-    const resp = await fetch('/preview',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({template_path:tplPath,selected_firms:sel})
-    });
-    hideStatus();
-    if(!resp.ok) return alert('Preview failed');
-    const {url} = await resp.json();
-    iframe.src=url;
-    modal.classList.remove('hidden');
   });
 
   closeBtn.onclick = exitBtn.onclick = () => modal.classList.add('hidden');
