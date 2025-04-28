@@ -369,5 +369,107 @@ FIRM_DATA = [
         "Street":      "1055 Dunsmuir St, Suite 3000",
         "City":        "Vancouver, BC V7X 1K8"
     },
+
+    {
+        "Firm":         "Harris & Company LLP",
+        "Short_Name":   "Harris",
+        "Salutations":  "Ms.",
+        "Contact":      "Michela Fiorido",
+        "Title":        "Chair, Student Committee",
+        "Street":       "550 Burrard St, 14th Floor",
+        "City":         "Vancouver, BC V6C 2B5"
+    },
+    {
+        "Firm":         "Piasetzki Nenniger Kvas LLP",
+        "Short_Name":   "PNK Law",
+        "Salutations":  "Ms.",
+        "Contact":      "Maria Auciello",
+        "Title":        "Manager, Finance and Administration",
+        "Street":       "2308-120 Adelaide St W",
+        "City":         "Toronto, ON M5H 1T1"
+    },
+    {
+        "Firm":         "Boughton Law Corporation",
+        "Short_Name":   "Boughton Law",
+        "Salutations":  "Ms.",
+        "Contact":      "Alexis Kazanowski",
+        "Title":        "Legal Talent Manager",
+        "Street":       "595 Burrard St, Suite 700",
+        "City":         "Vancouver, BC V7X 1S8"
+    },
+    {
+        "Firm":         "Whitelaw Twining LLP",
+        "Short_Name":   "Whitelaw Twining",
+        "Salutations":  "Ms.",
+        "Contact":      "Danna Marks",
+        "Title":        "Director of Associates & Student Affairs",
+        "Street":       "1100 - 123 Front Street West",
+        "City":         "Toronto, ON M5J 2M2"
+    },
+    {
+        "Firm":         "Miller Titerle + Co.",
+        "Short_Name":   "MT+Co",
+        "Salutations":  "Ms.",
+        "Contact":      "Christina Nguyen",
+        "Title":        "People + Culture Coordinator",
+        "Street":       "Suite 300 - 638 Smithe Street",
+        "City":         "Vancouver, BC V6B 1E3"
+    },
+    {
+        "Firm":         "Owen Bird Law Corporation",
+        "Short_Name":   "Owen Bird",
+        "Salutations":  "Ms.",
+        "Contact":      "Mari Laurenciano",
+        "Title":        "Human Resources and Administrative Assistant",
+        "Street":       "733 Seymour St, Suite 2900",
+        "City":         "Vancouver, BC V6B 0S6"
+    },
+    {
+        "Firm":         "DuMoulin Black LLP",
+        "Short_Name":   "DuMoulin Black",
+        "Salutations":  "Ms.",
+        "Contact":      "Jeannette Damaso",
+        "Title":        "Head of People & Culture",
+        "Street":       "1111 W Hastings St, 15th Floor",
+        "City":         "Vancouver, BC V6E 2J3"
+    },
+    {
+        "Firm":         "Richards Buell Sutton LLP",
+        "Short_Name":   "RBS",
+        "Salutations":  "Ms.",
+        "Contact":      "Morgan Fowler",
+        "Title":        "Director of Professional Development",
+        "Street":       "401 W Georgia St, Suite 700",
+        "City":         "Vancouver, BC V6B 5A1"
+    },
+    {
+        "Firm":         "Whitelaw Twining LLP",
+        "Short_Name":   "Whitelaw Twining",
+        "Salutations":  "Ms.",
+        "Contact":      "Danna Marks",
+        "Title":        "Director of Associates & Student Affairs",
+        "Street":       "200 Granville St, Suite 2400",
+        "City":         "Vancouver, BC V6C 1S4"
+    },
+    {
+        "Firm":         "Roper Greyell LLP",
+        "Short_Name":   "Roper Greyell",
+        "Salutations":  "Ms.",
+        "Contact":      "Chira Perla",
+        "Title":        "Director of Professional Development",
+        "Street":       "745 Thurlow St, Suite 1850",
+        "City":         "Vancouver, BC V6E 0C5"
+    },
+    {
+        "Firm":         "Lindsay Kenney LLP",
+        "Short_Name":   "Lindsay Kenney",
+        "Salutations":  "Ms.",
+        "Contact":      "Nina Astle",
+        "Title":        "Human Resources Manager",
+        "Street":       "401 W Georgia St, Suite 1500",
+        "City":         "Vancouver, BC V6B 0S1"
+    }
+
+
 ]
 
