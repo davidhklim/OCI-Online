@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OCI Helper</title>
-  <link rel="stylesheet"
-        href="{{ url_for('static', filename='styles.css') }}" />
-  <script src="{{ url_for('static', filename='scripts.js') }}"
-          defer></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
 </head>
 <body>
 
@@ -19,7 +17,7 @@
     </header>
 
     <main class="card">
-      <p><strong>Cover Letter Generator - User Guide</strong></p>
+      <p><strong>Cover Letter Generator – User Guide</strong></p>
       <p>Welcome to <strong>OCI Helper</strong>, a tool designed to automate the creation of personalized cover letters using firm-specific data. If you have suggestions (e.g., adding other cities), please let me know!</p>
 
       <h2>Additional Resource: OCI Tracker</h2>
@@ -27,53 +25,29 @@
         I created an 
         <a href="https://docs.google.com/spreadsheets/d/1VZIOgAQZAfTfsn78PIqvQXCOFdRAdJLM0eMgSDP4w3c/edit?usp=sharing"
            target="_blank">OCI Tracker</a>
-        to help keep you organized during the application process.<br>
-        <strong>Make a copy to your drive</strong> for personal use.
+        to help keep you organized. <strong>Make a copy to your drive</strong>.
       </p>
       <hr />
 
       <h3>File Naming Convention</h3>
       <ul>
-        <li>
-          The generated cover letter files will be named using the following convention:<br>
-          <code>[Template Cover Letter Name] + " (Short_Name)"</code>
+        <li>The generated files will be named:<br>
+            <code>[Template Base] (Short_Name).docx</code><br>
+            <code>[Template Base] (Short_Name).pdf</code>
         </li>
-        <li>
-          <strong>Example:</strong><br>
-          If your template is named <code>ElleWoods_Cover Letter</code> and you applied to <strong>BLG</strong>, the resultant files will be:
-          <ul>
-            <li><code>ElleWoods_CoverLetter (BLG).docx</code></li>
-            <li><code>ElleWoods_CoverLetter (BLG).pdf</code></li>
-          </ul>
+        <li><strong>Example:</strong> If your template is named <code>ElleWoods_CoverLetter</code> and you apply to BLG, you get:<br>
+            <code>ElleWoods_CoverLetter (BLG).docx</code><br>
+            <code>ElleWoods_CoverLetter (BLG).pdf</code>
         </li>
       </ul>
 
       <h3>Usage Instructions</h3>
       <ol>
-        <li>
-          <strong>Update the Template:</strong>
-          <ul>
-            <li>Download and open the cover letter template.</li>
-            <li>Customize the template as needed while keeping the following placeholder fields intact. These fields will be automatically filled with firm-specific information:
-              <ul>
-                <li><strong>«Firm»</strong>: The full name of the firm</li>
-                <li><strong>«Short_Name»</strong>: A shortened name for references</li>
-                <li><strong>«Salutations»</strong>: Honourific (e.g., Mr., Ms.)</li>
-                <li><strong>«Contact»</strong>: Hiring Manager’s name</li>
-                <li><strong>«Title»</strong>: Hiring Manager’s title</li>
-                <li><strong>«Street»</strong>: Street address</li>
-                <li><strong>«City»</strong>: City, province, postal code</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>Upload your cover letter template by clicking <strong>Upload Template</strong> in the next screen.</li>
-        <li>The website will insert the selected firm information into your cover letter and save as DOCX and PDF.</li>
-        <li>Files are organized into separate folders by city.</li>
+        <li>Customize your Word template, preserving placeholders (<code>«Firm»</code>, <code>«Short_Name»</code>, etc.).</li>
+        <li>Click “Next” below to upload the template, select firms, and generate your letters.</li>
       </ol>
 
-      <p><strong>Good Luck! – David L :)</strong></p>
-      <button type="button" class="next-btn" id="btn-next">Next →</button>
+      <button class="next-btn" id="btn-next">Next →</button>
     </main>
   </section>
 
@@ -81,10 +55,12 @@
   <section id="app" class="app-page hidden">
     <header><h1>Cover Letter Generator</h1></header>
     <main class="card">
+
       <section>
-        <h2>Download Sample Cover Letter</h2>
-        <a href="{{ url_for('static', filename='AllardSample_CoverLetter.docx') }}"
-           download>Download Sample</a>
+        <h2>Download Sample</h2>
+        <a href="{{ url_for('static', filename='AllardSample_CoverLetter.docx') }}" download>
+          Download Sample Cover Letter
+        </a>
       </section>
 
       <section class="upload-section">
@@ -114,14 +90,14 @@
         <h2>Actions</h2>
         <button id="preview-button" disabled>Preview</button>
         <button id="generate-button" disabled>Generate &amp; Download ZIP</button>
-        <progress id="status-bar" max="100"
-                  style="width:100%; margin-top:10px; display:none;"></progress>
+        <progress id="status-bar" max="100" style="width:100%; margin-top:10px; display:none;"></progress>
         <p id="status-text" style="margin-top:5px;"></p>
       </section>
+
     </main>
   </section>
 
-  <!-- Full-screen PDF Preview Modal -->
+  <!-- PDF Preview Modal -->
   <div id="preview-modal" class="modal hidden">
     <div class="modal-content">
       <button id="modal-close">&times;</button>

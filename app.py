@@ -8,7 +8,13 @@ from docx2pdf import convert
 
 from firms_data import FIRM_DATA
 
-app = Flask(__name__)
+# Tell Flask that both templates and static files are in the current dir
+app = Flask(
+    __name__,
+    static_folder='.',        # serve CSS/JS from project root
+    static_url_path='/static',
+    template_folder='.'       # look for index.html here
+)
 app.config['UPLOAD_FOLDER'] = tempfile.gettempdir()
 
 
@@ -63,7 +69,7 @@ def preview_letters():
     if not tpl or not os.path.exists(tpl) or not sel:
         return "Template not found or no firms selected", 400
 
-    # Only preview the first selected firm
+    # Preview the first selected firm
     firm = sel[0]
     doc = Document(tpl)
     doc = merge_fields(doc, firm)
@@ -72,12 +78,11 @@ def preview_letters():
     tmp_docx = os.path.join(app.config['UPLOAD_FOLDER'], f"{base}_PREVIEW.docx")
     doc.save(tmp_docx)
 
-    # Explicitly convert to PDF
     pdf_path = tmp_docx.replace('.docx', '.pdf')
     try:
         convert(tmp_docx, pdf_path)
     except Exception as e:
-        print(f"Preview conversion error for {tmp_docx}: {e}")
+        print(f"Preview conversion error: {e}")
 
     if not os.path.exists(pdf_path):
         return "Preview PDF not generated", 500
@@ -102,11 +107,9 @@ def generate_letters():
         return "Template not found", 400
 
     def city_group(c):
-        c = (c or '').lower()
-        if c.startswith('toronto'):
-            return 'Toronto'
-        if c.startswith('vancouver'):
-            return 'Vancouver'
+        c0 = (c or '').split(',')[0].strip().lower()
+        if c0 == 'toronto':   return 'Toronto'
+        if c0 == 'vancouver': return 'Vancouver'
         return 'Other'
 
     base, ext = os.path.splitext(os.path.basename(tpl))
@@ -114,28 +117,32 @@ def generate_letters():
 
     with zipfile.ZipFile(zip_path, 'w') as zf:
         for firm in sel:
-            # 1) Generate DOCX
+            city = city_group(firm.get('City'))
+
+            # ensure city subfolder on disk
+            city_dir = os.path.join(app.config['UPLOAD_FOLDER'], city)
+            os.makedirs(city_dir, exist_ok=True)
+
+            # filename stays as "[Base] (Short_Name).docx"
+            name_docx = f"{base} ({firm['Short_Name']}){ext}"
+            path_docx = os.path.join(city_dir, name_docx)
+
+            # create DOCX
             doc = Document(tpl)
             doc = merge_fields(doc, firm)
-            name_docx = f"{base} ({firm['Short_Name']}){ext}"
-            path_docx = os.path.join(app.config['UPLOAD_FOLDER'], name_docx)
             doc.save(path_docx)
 
-            # 2) Explicitly convert to PDF
+            # convert to PDF
             path_pdf = path_docx.replace('.docx', '.pdf')
             try:
                 convert(path_docx, path_pdf)
             except Exception as e:
                 print(f"Conversion error for {path_docx}: {e}")
 
-            # 3) Add both DOCX & PDF to the ZIP
-            folder = city_group(firm.get('City'))
-            arc_docx = os.path.join(folder, name_docx)
-            zf.write(path_docx, arcname=arc_docx)
-
+            # add both into ZIP under "City/" folder
+            zf.write(path_docx, arcname=os.path.join(city, name_docx))
             if os.path.exists(path_pdf):
-                arc_pdf = os.path.join(folder, os.path.basename(path_pdf))
-                zf.write(path_pdf, arcname=arc_pdf)
+                zf.write(path_pdf, arcname=os.path.join(city, os.path.basename(path_pdf)))
 
     return send_file(zip_path, as_attachment=True, download_name='cover_letters.zip')
 
