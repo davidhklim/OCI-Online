@@ -1,25 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let tplPath = null, firms = [];
+  let tplPath = null,
+      firms   = [];
 
-  const statusBar   = document.getElementById('status-bar');
-  const statusText  = document.getElementById('status-text');
-  const uploadForm  = document.getElementById('upload-form');
-  const generateBtn = document.getElementById('generate-button');
-  const uploadStatus= document.getElementById('upload-status');
-  const vanList     = document.getElementById('firm-list-vancouver');
-  const torList     = document.getElementById('firm-list-toronto');
+  const statusBar    = document.getElementById('status-bar');
+  const statusText   = document.getElementById('status-text');
+  const uploadForm   = document.getElementById('upload-form');
+  const generateBtn  = document.getElementById('generate-button');
+  const uploadStatus = document.getElementById('upload-status');
+  const vanList      = document.getElementById('firm-list-vancouver');
+  const torList      = document.getElementById('firm-list-toronto');
 
-  const modal       = document.getElementById('preview-modal');
-  const closeBtn    = document.getElementById('modal-close');
-  const exitBtn     = document.getElementById('modal-exit');
-  const iframe      = document.getElementById('modal-iframe');
-
-  function showStatus(txt, indet=true, pct=null) {
+  function showStatus(txt, indet = true, pct = null) {
     statusText.textContent = txt;
     statusBar.style.display = 'block';
-    if (indet) statusBar.removeAttribute('value');
-    else if (pct!==null) statusBar.value = pct;
+    if (indet) {
+      statusBar.removeAttribute('value');
+    } else if (pct !== null) {
+      statusBar.value = pct;
+    }
   }
+
   function hideStatus() {
     statusBar.style.display = 'none';
     statusText.textContent = '';
@@ -28,13 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
   async function fetchFirms() {
     const resp = await fetch('/firms');
     firms = await resp.json();
-    vanList.innerHTML = torList.innerHTML = '';
-    firms.forEach((f,i) => {
-      const li = document.createElement('li'),
-            lbl= document.createElement('label'),
-            cb = document.createElement('input');
-      cb.type='checkbox'; cb.value=i;
-      lbl.className='firm-label';
+    vanList.innerHTML = '';
+    torList.innerHTML = '';
+    firms.forEach((f, i) => {
+      const li  = document.createElement('li');
+      const lbl = document.createElement('label');
+      const cb  = document.createElement('input');
+      cb.type  = 'checkbox';
+      cb.value = i;
+      lbl.className = 'firm-label';
       lbl.append(cb, ` ${f.Firm}`);
       li.append(lbl);
       f.City.toLowerCase().startsWith('vancouver')
@@ -47,64 +49,85 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     showStatus('Uploading template…');
     const fd = new FormData();
-    fd.append('template', document.getElementById('template').files[0]);
+    const fileInput = document.getElementById('template');
+    if (!fileInput.files.length) {
+      uploadStatus.textContent = 'No file selected';
+      hideStatus();
+      return;
+    }
+    fd.append('template', fileInput.files[0]);
+
     try {
-      const resp = await fetch('/upload-template',{method:'POST',body:fd});
-      if(!resp.ok) throw '';
-    } catch {
-      uploadStatus.textContent='Upload error';
-    } finally { hideStatus(); }
+      const resp = await fetch('/upload-template', { method: 'POST', body: fd });
+      if (!resp.ok) throw new Error(`Upload failed: ${resp.status}`);
+      const { template_path } = await resp.json();
+      tplPath = template_path;
+      uploadStatus.textContent = 'Template uploaded!';
+      generateBtn.disabled = false;
+    } catch (err) {
+      console.error(err);
+      uploadStatus.textContent = 'Upload error';
+    } finally {
+      hideStatus();
+    }
   });
 
-  closeBtn.onclick = exitBtn.onclick = () => modal.classList.add('hidden');
-
   generateBtn.addEventListener('click', () => {
-    if(!tplPath) return alert('Upload first');
+    if (!tplPath) {
+      return alert('Please upload a template first.');
+    }
     const checked = Array.from(document.querySelectorAll(
       '#firm-list-vancouver input:checked, #firm-list-toronto input:checked'
     ));
-    if(!checked.length) return alert('Select at least one');
-    const sel = checked.map(cb=>firms[+cb.value]);
+    if (!checked.length) {
+      return alert('Select at least one firm.');
+    }
+    const sel = checked.map(cb => firms[+cb.value]);
 
     showStatus('Starting…', true);
-    const payload = JSON.stringify({template_path:tplPath,selected_firms:sel});
+    const payload = JSON.stringify({ template_path: tplPath, selected_firms: sel });
     const xhr = new XMLHttpRequest();
-    xhr.open('POST','/generate');
-    xhr.responseType='blob';
-    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.open('POST', '/generate');
+    xhr.responseType = 'blob';
+    xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.upload.onprogress = e => {
-      if(e.lengthComputable){
-        const p=Math.round(e.loaded/e.total*50);
+      if (e.lengthComputable) {
+        const p = Math.round(e.loaded / e.total * 50);
         showStatus(`Uploading… ${p}%`, false, p);
       }
     };
     xhr.onloadstart = () => {
-      statusText.textContent='Merging…';
+      statusText.textContent = 'Merging…';
       statusBar.removeAttribute('value');
     };
     xhr.onprogress = e => {
-      if(e.lengthComputable){
-        const p=Math.round(e.loaded/e.total*50)+50;
+      if (e.lengthComputable) {
+        const p = Math.round(e.loaded / e.total * 50) + 50;
         showStatus(`Downloading… ${p}%`, false, p);
       }
     };
     xhr.onload = () => {
-      if(xhr.status===200){
-        const blob=xhr.response, url=URL.createObjectURL(blob),
-              a=document.createElement('a');
-        a.href=url; a.download='cover_letters.zip';
-        document.body.append(a); a.click(); a.remove();
+      if (xhr.status === 200) {
+        const blob = xhr.response;
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href     = url;
+        a.download = 'cover_letters.zip';
+        document.body.append(a);
+        a.click();
+        a.remove();
         showStatus('Done! Downloading…', false, 100);
       } else {
-        statusText.textContent=`Error ${xhr.status}`;
+        statusText.textContent = `Error ${xhr.status}`;
       }
-      setTimeout(hideStatus,1500);
+      setTimeout(hideStatus, 1500);
     };
     xhr.onerror = () => {
-      statusText.textContent='Network error.';
-      setTimeout(hideStatus,2000);
+      statusText.textContent = 'Network error.';
+      setTimeout(hideStatus, 2000);
     };
+
     xhr.send(payload);
   });
 
