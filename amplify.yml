@@ -1,0 +1,21 @@
+version: 1
+applications:
+  - name: oci-helper
+    backend:
+      phases:
+        preBuild:
+          commands:
+            - echo "Starting container build..."
+        build:
+          commands:
+            - docker build -t oci-helper-app .
+        postBuild:
+          commands:
+            - echo "Container build complete."
+    container:
+      ports:
+        - 5000
+    artifacts:
+      baseDirectory: /
+      files:
+        - '**/*'
