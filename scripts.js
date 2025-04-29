@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const torList      = document.getElementById('firm-list-toronto');
   const nyList       = document.getElementById('firm-list-newyork');
 
+  // Hide the New York column
+  const nyColumn = nyList.closest('.firm-column');
+  nyColumn.classList.add('hidden');
+
   function showStatus(txt, indet = true, pct = null) {
     statusText.textContent = txt;
     statusBar.style.display = 'block';
