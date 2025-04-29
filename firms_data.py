@@ -468,6 +468,15 @@ FIRM_DATA = [
         "Title":        "Human Resources Manager",
         "Street":       "401 W Georgia St, Suite 1500",
         "City":         "Vancouver, BC V6B 0S1"
+    },
+    {
+        "Firm":         "Wildeboer Dellelce LLP",
+        "Short_Name":   "Wildeboer Dellelce",
+        "Salutations":  "Ms.",
+        "Contact":      "Sanjeev Patel",
+        "Title":        "Chair, Student Committee",
+        "Street":       "365 Bay St, Suite 800",
+        "City":         "Toronto, ON M5H 2V1"
     }
 
 
