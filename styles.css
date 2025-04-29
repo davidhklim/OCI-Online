@@ -32,15 +32,38 @@ body {
 .firm-container {
   display:flex; justify-content:space-evenly; gap:10px;
 }
-.firm-column { flex:1; }
+.firm-column {
+  flex: 1 1 0;        /* grow/shrink equally */
+  max-width: 33%;     /* never exceed one third */
+}
 .firm-list { list-style:none; padding:0; margin:0; }
 .firm-label {
-  display:block; padding:8px 12px;
-  border:1px solid #ddd; border-radius:4px;
-  cursor:pointer; transition:background .2s;
+  display: flex;              /* so we can align the text */
+  align-items: center;        /* vertically center */
+  padding: 0 12px;            /* drop the top/bottom padding */
+  height: 60px;               /* choose your fixed height */
+  width: 100%;                /* fill the column width */
+  box-sizing: border-box;     /* include border in that 100% width */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
 }
 .firm-label:hover { background:#eef; }
 .firm-label input { margin-right:8px; }
+
+.search-bar {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#firm-search {
+  width: 80%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
 .modal {
   position:fixed; top:0; left:0;
@@ -82,4 +105,10 @@ button:hover { background:#00006A; }
 
 progress#status-bar {
   width:100%; margin-top:10px;
+}
+
+.selected-count {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-align: center;
 }

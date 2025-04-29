@@ -479,6 +479,5 @@ FIRM_DATA = [
         "City":         "Toronto, ON M5H 2V1"
     }
 
-
 ]
 

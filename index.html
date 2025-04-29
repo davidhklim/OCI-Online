@@ -40,7 +40,7 @@
         </li>
         <li>
           <strong>Example:</strong><br>
-          If your template is named <code>ElleWoods_Cover Letter</code> and you applied to <strong>BLG</strong>, the resultant file will be:
+          If your template is named <code>ElleWoods_CoverLetter</code> and you applied to <strong>BLG</strong>, the resultant file will be:
           <ul>
             <li><code>ElleWoods_CoverLetter (BLG).docx</code></li>
           </ul>
@@ -98,6 +98,17 @@
 
       <section class="select-section">
         <h2>Select Firms</h2>
+
+        <!-- Selected-count display -->
+        <div class="selected-count">
+          Selected firms: <span id="selected-count">0</span>
+        </div>
+
+        <!-- Add a search bar for filtering firms -->
+        <div class="search-bar">
+          <input type="text" id="firm-search" placeholder="🔍 Search firms…" autocomplete="off" />
+        </div>
+
         <div class="firm-container">
           <div class="firm-column">
             <h3>Vancouver</h3>
@@ -106,6 +117,10 @@
           <div class="firm-column">
             <h3>Toronto</h3>
             <ul id="firm-list-toronto" class="firm-list"></ul>
+          </div>
+          <div class="firm-column">
+            <h3>New York</h3>
+            <ul id="firm-list-newyork" class="firm-list"></ul>
           </div>
         </div>
       </section>
@@ -151,3 +166,4 @@
   </script>
 </body>
 </html>
+``` 
