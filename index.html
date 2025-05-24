@@ -104,9 +104,17 @@
           Selected firms: <span id="selected-count">0</span>
         </div>
 
+       
         <!-- Add a search bar for filtering firms -->
         <div class="search-bar">
           <input type="text" id="firm-search" placeholder="🔍 Search firms…" autocomplete="off" />
+        </div>
+
+        <!-- Jurisdiction filters -->
+        <div class="jurisdiction-filters">
+          <label><input type="checkbox" name="jurisdiction" value="Vancouver" checked> Vancouver</label>
+          <label><input type="checkbox" name="jurisdiction" value="Toronto" checked> Toronto</label>
+          <label><input type="checkbox" name="jurisdiction" value="New York" checked> New York</label>
         </div>
 
         <div class="firm-container">
@@ -166,4 +174,3 @@
   </script>
 </body>
 </html>
-``` 

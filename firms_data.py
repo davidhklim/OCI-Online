@@ -477,6 +477,141 @@ FIRM_DATA = [
         "Title":        "Chair, Student Committee",
         "Street":       "365 Bay St, Suite 800",
         "City":         "Toronto, ON M5H 2V1"
+    },
+     {
+        "Firm":        "Allen Overy Shearman Sterling LLP",
+        "Short_Name":  "A&O Shearman",
+        "Salutations": "Mr.",
+        "Contact":     "Trevor Mathews",
+        "Title":       "Senior Manager US, Law Student Recruitment",
+        "Street":      "599 Lexington Ave.",
+        "City":        "New York, NY 10022"
+    },
+    {
+        "Firm":        "Alston & Bird LLP",
+        "Short_Name":  "Alston & Bird",
+        "Salutations": "Ms.",
+        "Contact":     "Amy Archer",
+        "Title":       "Attorney Hiring Manager",
+        "Street":      "90 Park Avenue",
+        "City":        "New York, NY 10016-1387"
+    },
+    {
+        "Firm":        "Baker & Hostetler LLP",
+        "Short_Name":  "Baker & Hostetler",
+        "Salutations": "Ms.",
+        "Contact":     "Dina Santora",
+        "Title":       "Senior Recruiting Manager",
+        "Street":      "45 Rockefeller Plaza",
+        "City":        "New York, NY 10111"
+    },
+    {
+        "Firm":        "Clifford Chance US LLP",
+        "Short_Name":  "Clifford Chance",
+        "Salutations": "Ms.",
+        "Contact":     "Sarah Posner",
+        "Title":       "Head of Legal Recruiting-US",
+        "Street":      "375 9th Avenue",
+        "City":        "New York, NY 10001-1696"
+    },
+    {
+        "Firm":        "Clyde & Co LLP",
+        "Short_Name":  "Clyde & Co",
+        "Salutations": "Ms.",
+        "Contact":     "Monica Anderson",
+        "Title":       "Early Careers Senior Advisor (North America)",
+        "Street":      "405 Lexington Ave, 16th Floor",
+        "City":        "New York, NY 10174"
+    },
+    {
+        "Firm":        "Covington & Burling LLP",
+        "Short_Name":  "Covington & Burlington",
+        "Salutations": "Ms.",
+        "Contact":     "Ali Gabriella Iannuzzo",
+        "Title":       "Director of Legal Recruiting and Professional Development",
+        "Street":      "620 Eighth Avenue",
+        "City":        "New York, NY 10018"
+    },
+    {
+        "Firm":        "Dechert LLP",
+        "Short_Name":  "Dechert",
+        "Salutations": "Ms.",
+        "Contact":     "Laura Creque",
+        "Title":       "Senior Legal Recruiting Manager",
+        "Street":      "1095 Avenue of the Americas",
+        "City":        "New York, NY 10036"
+    },
+    {
+        "Firm":        "Goodwin Procter LLP",
+        "Short_Name":  "Goodwin",
+        "Salutations": "Ms.",
+        "Contact":     "Yedida Hiller",
+        "Title":       "Director, Legal Recruiting",
+        "Street":      "620 Eighth Avenue",
+        "City":        "New York, NY 10018-1405"
+    },
+    {
+        "Firm":        "Latham & Watkins LLP",
+        "Short_Name":  "Latham & Watkins",
+        "Salutations": "Ms.",
+        "Contact":     "Rosemary Jones",
+        "Title":       "Director of US Associate Recruiting",
+        "Street":      "1271 Avenue of the Americas",
+        "City":        "New York, NY 10022"
+    },
+    {
+        "Firm":        "Milbank LLP",
+        "Short_Name":  "Milbank",
+        "Salutations": "Ms.",
+        "Contact":     "Alexandra Paslawsky",
+        "Title":       "Director of Global Legal Recruiting",
+        "Street":      "55 Hudson Yards",
+        "City":        "New York, NY 10001-2163"
+    },
+    {
+        "Firm":        "Morrison & Foerster LLP",
+        "Short_Name":  "MoFo",
+        "Salutations": "Ms.",
+        "Contact":     "Lauren Galluzzo",
+        "Title":       "Regional Attorney Recruiting Manager, East Coast",
+        "Street":      "250 West 55th Street",
+        "City":        "New York, NY 10019"
+    },
+    {
+        "Firm":        "Orrick, Herrington & Sutcliffe LLP",
+        "Short_Name":  "Orrick",
+        "Salutations": "Ms.",
+        "Contact":     "Peony Tam",
+        "Title":       "Recruiting Specialist",
+        "Street":      "51 West 52nd Street",
+        "City":        "New York, NY 10019-6142"
+    },
+    {
+        "Firm":        "Perkins Coie LLP",
+        "Short_Name":  "Perkins Coie",
+        "Salutations": "Ms.",
+        "Contact":     "Sarah Hayden",
+        "Title":       "Legal Recruiting Manager",
+        "Street":      "1155 Avenue of the Americas, 22nd Floor",
+        "City":        "New York, NY 10036"
+    },
+    {
+        "Firm":        "Sullivan & Cromwell LLP",
+        "Short_Name":  "Sullivan & Cromwell",
+        "Salutations": "Ms.",
+        "Contact":     "Caroline E. Whelan",
+        "Title":       "Senior Manager",
+        "Street":      "125 Broad Street",
+        "City":        "New York, NY 10004-2498"
+    },
+    {
+        "Firm":        "White & Case LLP",
+        "Short_Name":  "White & Case",
+        "Salutations": "Ms.",
+        "Contact":     "Ashley Concini",
+        "Title":       "Senior Manager, Early Careers Legal Recruitment – Americas",
+        "Street":      "1221 Avenue of the Americas",
+        "City":        "New York, NY 10020"
     }
 
 ]

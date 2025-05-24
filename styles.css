@@ -33,11 +33,11 @@ body {
 
 .firm-container {
   display: flex;
-  justify-content: space-evenly;
-  gap: 10px;
+  gap: 1rem;           /* Optional spacing between columns */
 }
 .firm-column {
-  flex: 1; /* Allow columns to grow and fill available space equally */
+  flex: 1 1 0;         /* Allow columns to grow/shrink equally */
+  min-width: 0;        /* Prevent overflow when content is long */
 }
 .firm-list { list-style:none; padding:0; margin:0; }
 .firm-label {
@@ -114,4 +114,19 @@ progress#status-bar {
   font-weight: bold;
   margin-bottom: 0.5em;
   text-align: center;
+}
+
+/* center the filter row */
+.jurisdiction-filters {
+  display: flex;            /* lay out labels in a row */
+  justify-content: center;  /* center them horizontally */
+  gap: 1rem;                /* space between checkboxes */
+  margin: 1rem 0;           /* vertical breathing room */
+}
+
+/* optional – vertically center the checkbox and text */
+.jurisdiction-filters label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }

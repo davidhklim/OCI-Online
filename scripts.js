@@ -97,6 +97,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Add jurisdiction filter functionality
+  document.querySelectorAll('input[name="jurisdiction"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      // Get all checked values
+      const active = Array.from(
+        document.querySelectorAll('input[name="jurisdiction"]:checked'),
+        el => el.value
+      );
+
+      // Toggle each column based on the active jurisdictions
+      document.querySelectorAll('.firm-column').forEach(col => {
+        const heading = col.querySelector('h3').textContent.trim();
+        col.style.display = active.includes(heading) ? '' : 'none';
+      });
+    });
+  });
+
   // Upload form and generate button handlers remain unchanged
   uploadForm.addEventListener('submit', async e => {
     e.preventDefault();
