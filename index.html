@@ -43,6 +43,7 @@
           If your template is named <code>ElleWoods_CoverLetter</code> and you applied to <strong>BLG</strong>, the resultant file will be:
           <ul>
             <li><code>ElleWoods_CoverLetter (BLG).docx</code></li>
+            <li><code>ElleWoods_CoverLetter (BLG).pdf</code></li>
           </ul>
         </li>
       </ul>
@@ -135,6 +136,18 @@
 
       <section class="generate-section">
         <h2>Actions</h2>
+
+        <!-- Add this above the generate button in your generate-section -->
+        <div class="pdf-toggle" style="margin-bottom:1em;">
+          <label>
+            <input type="checkbox" id="generate-pdf" checked>
+            Would you also like to generate PDFs?
+          </label>
+          <div style="font-size:0.95em; color:#888; margin-top:4px;">
+            <em>Note: Creating PDFs will increase rendering time (please wait up to a minute).</em>
+          </div>
+        </div>
+
         <button id="generate-button" disabled>Generate &amp; Download ZIP</button>
         <progress id="status-bar" max="100"
                   style="width:100%; margin-top:10px; display:none;"></progress>

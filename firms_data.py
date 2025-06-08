@@ -612,7 +612,125 @@ FIRM_DATA = [
         "Title":       "Senior Manager, Early Careers Legal Recruitment – Americas",
         "Street":      "1221 Avenue of the Americas",
         "City":        "New York, NY 10020"
-    }
+    },
+    {
+  "Firm": "Kirkland & Ellis LLP",
+  "Short_Name": "Kirkland & Ellis",
+  "Salutations": "Ms.",
+  "Contact": "Meghan Chamberlin",
+  "Title": "Director of Firmwide Legal Recruiting",
+  "Street": "601 Lexington Avenue",
+  "City": "New York, NY 10022"
+},
+{
+  "Firm": "Skadden, Arps, Slate, Meagher & Flom LLP",
+  "Short_Name": "Skadden",
+  "Salutations": "Ms.",
+  "Contact": "Carly Appel",
+  "Title": "Director of Attorney Recruiting",
+  "Street": "One Manhattan West",
+  "City": "New York, NY 10001"
+},
+{
+  "Firm": "Gibson, Dunn & Crutcher LLP",
+  "Short_Name": "Gibson Dunn",
+  "Salutations": "Ms.",
+  "Contact": "Stefani Berkenfeld",
+  "Title": "Director of Recruiting",
+  "Street": "200 Park Avenue",
+  "City": "New York, NY 10166-0193"
+},
+{
+  "Firm": "Sidley Austin LLP",
+  "Short_Name": "Sidley Austin",
+  "Salutations": "Ms.",
+  "Contact": "Katrina Heinig",
+  "Title": "Senior Legal Recruiting Manager",
+  "Street": "787 Seventh Avenue",
+  "City": "New York, New York 10019"
+},
+{
+  "Firm": "Morgan, Lewis & Bockius LLP",
+  "Short_Name": "Morgan Lewis",
+  "Salutations": "Ms.",
+  "Contact": "Jennifer Chou",
+  "Title": "Attorney Recruiting Manager",
+  "Street": "101 Park Ave.",
+  "City": "New York, NY 10178-0060"
+},
+{
+  "Firm": "Hogan Lovells US LLP",
+  "Short_Name": "Hogan Lovells",
+  "Salutations": "Ms.",
+  "Contact": "Georgia Emery Gray",
+  "Title": "Director of Associate Recruitment",
+  "Street": "390 Madison Avenue",
+  "City": "New York, NY 10017"
+},
+{
+  "Firm": "Simpson Thacher & Bartlett LLP",
+  "Short_Name": "Simpson Thacher",
+  "Salutations": "Ms.",
+  "Contact": "Ann Bjornstad",
+  "Title": "Director, Legal Recruiting & Partner Integration",
+  "Street": "425 Lexington Avenue",
+  "City": "New York, NY 10017"
+},
+{
+  "Firm": "Dentons US LLP",
+  "Short_Name": "Dentons",
+  "Salutations": "Mr.",
+  "Contact": "Nicole Gonzales",
+  "Title": "Legal Recruitment Coordinator",
+  "Street": "1221 Avenue of the Americas",
+  "City": "New York, NY 10020-1089"
+},
+{
+  "Firm": "Norton Rose Fulbright US LLP",
+  "Short_Name": "NRF",
+  "Salutations": "Ms.",
+  "Contact": "Ally Perlman",
+  "Title": "Manager, Entry-Level Recruiting",
+  "Street": "1301 Avenue of the Americas",
+  "City": "New York, New York 10019-6022"
+},
+{
+  "Firm": "King & Spalding LLP",
+  "Short_Name": "King & Spalding",
+  "Salutations": "Mr.",
+  "Contact": "Katie Brown",
+  "Title": "Chief Recruiting Officer",
+  "Street": "1185 Avenue of the Americas",
+  "City": "New York, NY 10036"
+},
+{
+  "Firm": "Paul Hastings LLP",
+  "Short_Name": "Paul Hastings",
+  "Salutations": "Ms.",
+  "Contact": "Amy Fredenburg",
+  "Title": "Managing Director, Talent Acquisition",
+  "Street": "200 Park Avenue",
+  "City": "New York, NY 10166"
+},
+{
+  "Firm": "McDermott Will & Emery",
+  "Short_Name": "McDermott",
+  "Salutations": "Ms.",
+  "Contact": "Abby Valovage",
+  "Title": "Talent Acquisition Manager, Law Students",
+  "Street": "One Vanderbilt Avenue",
+  "City": "New York, NY 10017-3852"
+},
+{
+  "Firm": "Cooley LLP",
+  "Short_Name": "Cooley",
+  "Salutations": "Ms.",
+  "Contact": "Jennifer King",
+  "Title": "Associate Director of Legal Talent",
+  "Street": "55 Hudson Yards",
+  "City": "New York, NY 10001-2157"
+}   
+
 
 ]
 

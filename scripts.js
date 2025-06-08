@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const nyList       = document.getElementById('firm-list-newyork');
 
   // Hide the New York column
-  const nyColumn = nyList.closest('.firm-column');
-  nyColumn.classList.add('hidden');
+  // const nyColumn = nyList.closest('.firm-column');
+  // nyColumn.classList.add('hidden');
 
   function showStatus(txt, indet = true, pct = null) {
     statusText.textContent = txt;
@@ -151,8 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return alert('Select at least one firm.');
     }
 
-    showStatus('Starting…', true);
-    const payload = JSON.stringify({ template_path: tplPath, selected_firms: selectedFirms });
+    const generatePDF = document.getElementById('generate-pdf').checked;
+
+    showStatus('Uploading template…');
+    const payload = JSON.stringify({
+      template_path: tplPath,
+      selected_firms: selectedFirms,
+      generate_pdf: generatePDF
+    });
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/generate');
     xhr.responseType = 'blob';
@@ -160,22 +166,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     xhr.upload.onprogress = e => {
       if (e.lengthComputable) {
-        const p = Math.round(e.loaded / e.total * 50);
-        showStatus(`Uploading… ${p}%`, false, p);
+        showStatus(`Uploading… (${Math.round(e.loaded / e.total * 100)}%)`);
       }
     };
     xhr.onloadstart = () => {
-      statusText.textContent = 'Merging…';
-      statusBar.removeAttribute('value');
+      showStatus('Uploading…');
     };
     xhr.onprogress = e => {
-      if (e.lengthComputable) {
-        const p = Math.round(e.loaded / e.total * 50) + 50;
-        showStatus(`Downloading… ${p}%`, false, p);
-      }
+      showStatus('Generating documents…');
     };
     xhr.onload = () => {
       if (xhr.status === 200) {
+        showStatus('Preparing download…');
         const blob = xhr.response;
         const url  = URL.createObjectURL(blob);
         const a    = document.createElement('a');
@@ -184,11 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.append(a);
         a.click();
         a.remove();
-        showStatus('Done! Downloading…', false, 100);
+        setTimeout(hideStatus, 1500);
       } else {
         statusText.textContent = `Error ${xhr.status}`;
+        setTimeout(hideStatus, 2000);
       }
-      setTimeout(hideStatus, 1500);
     };
     xhr.onerror = () => {
       statusText.textContent = 'Network error.';
